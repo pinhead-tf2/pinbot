@@ -13,6 +13,7 @@ botCreator = "pinhead#4946"
 ver = ['v1.0.0', '06-06-2021'] # Bot version and release date goes here, major update.minor update.bugfix update.
 
 guild_ids = [827647182051737651] # Server ID goes here
+sayPermIDs= [246291288775852033, 495303865214959618, 474759210056548353, 488414757628411934, 638864530964742184]
 botStartTime = DT.datetime.now()
 config = 'config.yml' # Open this file and put your bot's name and token there
 
@@ -114,6 +115,11 @@ async def shutdown(ctx):
     else:
         await ctx.send("Only pinhead can shut me down!") # Put your name here
 
+# @bot.command(pass_context=True)
+# async def say(ctx, *messageContent):
+#     if ctx.author.id == sayPermIDs:
+#          await ctx.send('{}', ' '.join(messageContent))
+
  # __  __           _                 _ _ 
  #|  \/  | ___   __| |_ __ ___   __ _(_) |
  #| |\/| |/ _ \ / _` | '_ ` _ \ / _` | | |
@@ -160,6 +166,10 @@ async def mail(ctx, user: discord.User, messageContent: str = None):
             await pinbotLogs.send("**Modmail sent to** <@" + str(user.id) + ">.\n**Message sent:** " + messageContent)
             lout.logModmail(config, startTime, 'modmailSent', messageContent)
     else:
-        await ctx.send("You're not staff!")
+        embed = discord.Embed(
+            color = discord.Color.red()
+        )
+        embed.add_field(name='An error occured while executing the command "mail". The error is:', value="```diff\n - You're not staff!```")
+        return await ctx.send(embed=embed)
 
 bot.run(lout.fetchToken(config))
