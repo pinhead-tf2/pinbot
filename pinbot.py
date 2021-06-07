@@ -20,7 +20,7 @@ from discord.ext.commands import bot
 #  |____/ \__\__,_|_|   \__|\__,_| .__/  |___|_| |_|_|  \___/ 
 #                                |_|                          
 
-bot = commands.Bot(command_prefix='p$', help_command=None) # Choose your prefix here, don't worry about help_command as it is created later
+bot = commands.Bot(command_prefix='p!', help_command=None) # Choose your prefix here, don't worry about help_command as it is created later
 client = discord.Client()
 botPrefix = 'p$' # Choose your prefix again, things like sendHelp use this prefix autofill
 botName = "pinbot" # Your bot's name goes here
