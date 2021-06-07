@@ -106,7 +106,7 @@ async def uptime(ctx):
 # |__| |__  |    |__) 
 # |  | |___ |___ |    
 
-@bot.command(pass_context=True) # This is the help command, make sure you put your commands here!
+@bot.command(pass_context=True) # This is the help command, make sure you put your commands here
 async def help(ctx):
     startTime = DT.datetime.now()
     author = ctx.message.author
