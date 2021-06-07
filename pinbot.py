@@ -175,10 +175,11 @@ async def shutdown(ctx):
 async def on_message(ctx):
     startTime = DT.datetime.now()
     sender_id = str(ctx.author.id)
+    pinbotLogs = discord.utils.get(bot.get_all_channels(), name="pinbot-logs") # Bot log channel goes here
     if ctx.author == bot.user:
         return
     if str(ctx.channel.type) == "private":  
-        await botLoggingChannel.send("**New Modmail!**\n" + "**From:** <@" + sender_id + ">!\n" + "**Message: **" + ctx.content)
+        await pinbotLogs.send("**New Modmail!**\n" + "**From:** <@" + sender_id + ">!\n" + "**Message: **" + ctx.content)
         embed = discord.Embed(
             color = discord.Color.green()
         )
@@ -191,30 +192,34 @@ async def on_message(ctx):
 
 @bot.command(pass_context=True, aliases=['sendMail', 'dm'])
 async def mail(ctx, user: discord.User, messageContent: str = None):
+    startTime = DT.datetime.now()
+    pinbotLogs = discord.utils.get(bot.get_all_channels(), name="pinbot-logs") # Bot log channel goes here
     # if user != str:
     #     embed = discord.Embed(
     #         color = discord.Color.red()
     #     )
     #     embed.add_field(name='An error occured while executing the command "mail". The error is:', value='```diff - You need to give a valid user ID.\n+ Command usage: mail 246291288775852033 "Hello!"```')
+    #     lout.log(config, startTime, 'mail')
     #     return await ctx.send(embed=embed)
     if messageContent is None:
         embed = discord.Embed(
             color = discord.Color.red()
         )
         embed.add_field(name='An error occured while executing the command "mail". The error is as follows:', value='```diff \n - The message content is empty.\n + Command usage: mail 246291288775852033 "Hello!"```')
+        lout.log(config, startTime, 'mail')
         return await ctx.send(embed=embed)
     role = discord.utils.get(ctx.guild.roles, name="Staff") # Your server's staff role goes here
     if role in ctx.author.roles:
-        if str(ctx.channel) == botCommandChannel: # Staff commands channel goes here
-            startTime = DT.datetime.now()
+        if str(ctx.channel) == "pinbot-commands": # Staff commands channel goes here
             await user.send("**New Modmail from** <@" + str(ctx.author.id) + ">!\n" + messageContent)
-            await botLoggingChannel.send("**Modmail sent to** <@" + str(user.id) + ">.\n**Message sent:** " + messageContent)
+            await pinbotLogs.send("**Modmail sent to** <@" + str(user.id) + ">.\n**Message sent:** " + messageContent)
             lout.logModmail(config, startTime, 'modmailSent', messageContent)
     else:
         embed = discord.Embed(
             color = discord.Color.red()
         )
         embed.add_field(name='An error occured while executing the command "mail". The error is as follows:', value="```diff \n - You're not staff!```")
+        lout.log(config, startTime, 'mail')
         return await ctx.send(embed=embed)
 
 bot.run(lout.fetchToken(config))
