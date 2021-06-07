@@ -28,4 +28,6 @@ I do not know if the package folder will be named different for each user, but a
 
 Please note that this bot is not finished and is still a thing I'm working on as I learn the ropes of Python. Some things like writing logModmail to the .txt logs do not work at the moment. Please bare with me as I progress.
 
+Credit to the ASCII headers goes to https://patorjk.com/software/taag
+
 AND PAY ATTENTION TO THE CODE COMMENTS IN PINBOT.PY, THAT IS TELLING YOU EVERYTHING YOU NEED TO KNOW ABOUT CUSTOMIZING THE BOT FOR YOUR SERVER.
