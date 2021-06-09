@@ -18,9 +18,9 @@ sLOUT 0.1 - (Already supplied with the bot)
 
 These paths can just be entered in the Windows Explorer bar, note that it will not work if you used anything besides Python 3.9.
 
-Make sure all of these are placed in the right folder, typically located at %USERNAME%\AppData\Local\Programs\Python\Python39\Lib\site-packages
+Make sure all of these are placed in the right folder, typically located at %userprofile%\AppData\Local\Programs\Python\Python39\Lib\site-packages
 
-If they are not installed there, go to %USERNAME%\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages
+If they are not installed there, go to %userprofile%\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages
 
 I do not know if the package folder will be named different for each user, but as something to note, it will always be named something like PythonSoftwareFoundation.Python.
 
