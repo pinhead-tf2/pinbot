@@ -28,7 +28,7 @@ client = discord.Client()
 # |__) \__/  |     | | \| |    \__/ 
                                   
 
-botPrefix = 'p$' # Choose your prefix again, things like sendHelp use this prefix autofill
+botPrefix = 'p!' # Choose your prefix again, things like sendHelp use this prefix autofill
 botName = "pinbot" # Your bot's name goes here
 botCreator = "pinhead#4946" # Your identity here
 ver = ['v1.0.0', '06-06-2021'] # Bot version and release date goes here, major update.minor update.bugfix update
@@ -45,11 +45,11 @@ guild_ids = [827647182051737651] # Server ID goes here
 sayPermIDs = [246291288775852033, 495303865214959618, 474759210056548353, 488414757628411934, 638864530964742184] # People you want to give say perms go here
 sayPermWordBlacklist = ['uwu', 'owo']
 angerEmoji = '<:angerHeavy:851646266106445865>'
-confusedEmoji = '<:sniperConfused:706523751587643512>'
-disappointEmoji = '<:scoutDisgust:434215290667008001>'
-unswagEmoji = '<:SwagCatThumbsDown:832640228132388894>'
-swagEmoji = '<:SwagCatThumbsUp:799695363627417620>'
-deathEmoji = '<a:death:851662800434626580> '
+confusedEmoji = '<:sniperConfused:852004183544823849>'
+disgustEmoji = '<:scoutDisgust:852004183381114921>'
+unswagEmoji = '<:swagCatThumbsDown:852004183698964490>'
+swagEmoji = '<:swagCatThumbsUp:852004184004755497>'
+deathEmoji = '<a:death:851662800434626580>'
 liveEmoji = '<a:live:851662800262529044>'
 
 #  __   ___       __          __       ___  __       ___ 
@@ -81,6 +81,7 @@ async def on_ready():
 @bot.command(pass_context=True, aliases=['lag'])
 async def ping(ctx):
     startTime = DT.datetime.now()
+    msg = await ctx.fetch_message(ctx.message.id)
     if str(ctx.channel.type) == "private": 
         embed = discord.Embed(
             color = discord.Color.red()
@@ -88,16 +89,16 @@ async def ping(ctx):
         embed.add_field(name='An error occured while executing the command "submitModmail". The error is as follows:', value="```diff\n - Commands can't be run in my DMs!```")
         await ctx.send(embed=embed)
         lout.log(config, startTime, 'ping')
-    elif str(ctx.channel) != "pinbot-commands" or "bot-cmds": # Your command channels go here
-        await ctx.add_reaction(deathEmoji)
-        lout.log(config, startTime, 'ping')
-    else:
+    if ctx.channel == "pinbot-commands" or "bot-cmds": # Your command channels go here
         botLatency = bot.latency*1000
         embed = discord.Embed(
             color = discord.Color.blue() 
         )
         embed.add_field(name='Pong! Delay:', value=botLatency)
         await ctx.send(embed=embed)
+        lout.log(config, startTime, 'ping')
+    else:
+        await msg.add_reaction(deathEmoji)
         lout.log(config, startTime, 'ping')
 
 # ___          ___ 
@@ -107,6 +108,7 @@ async def ping(ctx):
 @bot.command(pass_context=True, aliases=['serverTime'])
 async def time(ctx):
     startTime = DT.datetime.now()
+    msg = await ctx.fetch_message(ctx.message.id)
     if str(ctx.channel.type) == "private": 
         embed = discord.Embed(
             color = discord.Color.red()
@@ -114,15 +116,15 @@ async def time(ctx):
         embed.add_field(name='An error occured while executing the command "submitModmail". The error is as follows:', value="```diff\n - Commands can't be run in my DMs!```")
         await ctx.send(embed=embed)
         lout.log(config, startTime, 'time')
-    elif str(ctx.channel) != "pinbot-commands" or "bot-cmds": # Your command channels go here
-        await ctx.add_reaction(deathEmoji)
-        lout.log(config, startTime, 'time')
-    else:
+    if ctx.channel == "pinbot-commands" or "bot-cmds": # Your command channels go here
         embed = discord.Embed(
             color = discord.Color.gold()
         )
         embed.add_field(name='Server Time:', value=DT.datetime.now())
         await ctx.send(embed=embed)
+        lout.log(config, startTime, 'time')
+    else:
+        await msg.add_reaction(deathEmoji)
         lout.log(config, startTime, 'time')
 
 #       __  ___          ___ 
@@ -132,23 +134,24 @@ async def time(ctx):
 @bot.command(pass_context=True, aliases=['runTime', 'runDuration'])
 async def uptime(ctx):
     startTime = DT.datetime.now()
+    msg = await ctx.fetch_message(ctx.message.id)
     if str(ctx.channel.type) == "private": 
         embed = discord.Embed(
             color = discord.Color.red()
         )
         embed.add_field(name='An error occured while executing the command "submitModmail". The error is as follows:', value="```diff\n - Commands can't be run in my DMs!```")
-        await ctx.send(embed=embed)
         lout.log(config, startTime, 'uptime')
-    elif str(ctx.channel) != "pinbot-commands" or "bot-cmds": # Your command channels go here
-        await ctx.add_reaction(deathEmoji)
-        lout.log(config, startTime, 'uptime')
-    else:
+        return await ctx.send(embed=embed)
+    if ctx.channel == "pinbot-commands" or "bot-cmds": # Your command channels go here
         runTime = startTime.replace(microsecond=0) - botStartTime.replace(microsecond=0)
         embed = discord.Embed(
             color = discord.Color.blue()
         )
         embed.add_field(name='Uptime (hh:mm:ss):', value=runTime)
         await ctx.send(embed=embed)
+        lout.log(config, startTime, 'uptime')
+    else:
+        await msg.add_reaction(deathEmoji)
         lout.log(config, startTime, 'uptime')
 
 #       ___       __  
@@ -158,6 +161,7 @@ async def uptime(ctx):
 @bot.command(pass_context=True) # This is the help command, make sure you put your commands here
 async def help(ctx):
     startTime = DT.datetime.now()
+    msg = await ctx.fetch_message(ctx.message.id)
     author = ctx.message.author
     role = discord.utils.get(ctx.guild.roles, name="Staff") # Your server's staff role goes here
     botVersion = ('{}'.format(ver[0]))
@@ -176,7 +180,7 @@ async def help(ctx):
     embed.add_field(name=botPrefix + 'shutdown, stop, kill', value='Shuts down the bot safely and outputs it to logs.', inline=False)
     embed.set_footer(text=botName + ' ' + botVersion + ' | ' + botVersionReleaseDate + ' | Created by pinhead [' + botCreator + ']') # Your name goes in the place of pinhead
     await author.send(embed=embed)
-    await ctx.add_reaction(swagEmoji)
+    await msg.add_reaction(swagEmoji)
     lout.log(config, startTime, 'help')
 
 #  __           
@@ -186,23 +190,23 @@ async def help(ctx):
 @bot.command(pass_context=True)
 async def say(ctx, *messageContent):
     startTime = DT.datetime.now()
+    msg = await ctx.fetch_message(ctx.message.id)
     if messageContent == ():
         lout.log(config, startTime, 'say')
-        return await ctx.add_reaction(confusedEmoji)
+        return await msg.add_reaction(confusedEmoji)
     else:
+        if 'owo' in messageContent: 
+            lout.log(config, startTime, 'say')
+            return await msg.add_reaction(angerEmoji)
+        if 'uwu' in messageContent: 
+            lout.log(config, startTime, 'say')
+            return await msg.add_reaction(angerEmoji)
         if ctx.author.id in sayPermIDs:
-            if 'owo' in messageContent: 
-                lout.log(config, startTime, 'say')
-                return await ctx.add_reaction(angerEmoji)
-            if 'uwu' in messageContent: 
-                lout.log(config, startTime, 'say')
-                return await ctx.add_reaction(angerEmoji)
             await ctx.send(" ".join(messageContent[:]))
-            msg = await ctx.fetch_message(ctx.message.id)
             await msg.delete()
             lout.log(config, startTime, 'say')
         else:
-            await ctx.add_reaction(deathEmoji)
+            await msg.add_reaction(deathEmoji)
         lout.log(config, startTime, 'say')
 
 #  __            ___  __   __            
@@ -211,14 +215,16 @@ async def say(ctx, *messageContent):
 
 @bot.command(pass_context=True, aliases=['stop', 'kill'])
 async def shutdown(ctx):
+    botShutdownTime = DT.datetime.now()
+    msg = await ctx.fetch_message(ctx.message.id)
     if ctx.author.id == 246291288775852033: # Your user ID goes here
-        botShutdownTime = DT.datetime.now()
         pinbotLogs = discord.utils.get(bot.get_all_channels(), name="pinbot-logs") # Bot log channel goes here
         await pinbotLogs.send(botName + " is shutting down...")
         lout.log(config, botShutdownTime, 'shutdown')
         exit()
     else:
-        await ctx.add_reaction(angerEmoji)
+        await msg.add_reaction(angerEmoji)
+        lout.log(config, botShutdownTime, 'shutdown')
 
 # __  __           _                 _ _ 
 #|  \/  | ___   __| |_ __ ___   __ _(_) |
@@ -249,21 +255,25 @@ async def on_message(ctx):
 @bot.command(pass_context=True, aliases=['sendMail', 'dm'])
 async def mail(ctx, user: discord.User, *messageContent):
     startTime = DT.datetime.now()
+    msg = await ctx.fetch_message(ctx.message.id)
     pinbotLogs = discord.utils.get(bot.get_all_channels(), name="pinbot-logs") # Bot log channel goes here
     if messageContent == ():
         lout.log(config, startTime, 'mail')
-        return await ctx.add_reaction(confusedEmoji)
+        return await msg.add_reaction(confusedEmoji)
     role = discord.utils.get(ctx.guild.roles, name="Staff") # Your server's staff role goes here
     if role in ctx.author.roles:
-        if str(ctx.channel) == "pinbot-commands": # Staff commands channel goes here
+        if ctx.channel == "pinbot-commands": # Staff commands channel goes here
             sendToUser = "**New Modmail from** <@" + str(ctx.author.id) + ">!\n"
             sendToLogs = "**Modmail sent to** <@" + str(user.id) + ">.\n**Message sent:** "
             print(messageContent)
             await user.send(sendToUser + " ".join(messageContent[:]))
             await pinbotLogs.send(sendToLogs + " ".join(messageContent[:]))
             lout.logModmail(config, startTime, 'modmailSent', messageContent)
+        else: 
+            lout.log(config, startTime, 'mail')
+            await msg.add_reaction(deathEmoji)
     else:
         lout.log(config, startTime, 'mail')
-        await ctx.add_reaction(deathEmoji)
+        await msg.add_reaction(deathEmoji)
 
 bot.run(lout.fetchToken(config))
