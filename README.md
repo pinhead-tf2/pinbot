@@ -12,8 +12,6 @@ PyYAML: 0.19.2 - pip install PyYAML
 
 asyncio 3.4.3 - pip install asyncio
 
-sLOUT 0.1 - (Already supplied with the bot)
-
 # Requirement Install Locations
 
 These paths can just be entered in the Windows Explorer bar, note that it will not work if you used anything besides Python 3.9.
