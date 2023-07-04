@@ -1,3 +1,5 @@
+venv
+backlog_database.sqlite
+api/steam/steam_applist.sqlite
+api/steam/steamapplist.json
 .env
-__pycache__
-.vscode

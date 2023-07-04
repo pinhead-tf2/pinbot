@@ -1,0 +1,167 @@
+{
+  "main": {
+    "id": "673830adfb6b25c4",
+    "type": "split",
+    "children": [
+      {
+        "id": "41773960a2e32f85",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "53699437a7723ae1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Task List.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a39b4ea90cf90264",
+    "type": "split",
+    "children": [
+      {
+        "id": "1744ec072bf9518d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e9c0c99e6b873b91",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "fd7cd4213d4d1447",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2ef04aaa78f0758f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "2813f0df7df1090f",
+    "type": "split",
+    "children": [
+      {
+        "id": "06e0288ac00833ab",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e363f5d159025ba8",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Task List.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9ca505b6dd0a7082",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Task List.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "fd13903e7175c009",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "89d9c34d9ccfaa37",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Task List.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "53699437a7723ae1",
+  "lastOpenFiles": [
+    "Files/Cogs/Backlog/Backlog Database.md",
+    "Files/Cogs/Backlog/Game Database.md",
+    "Files/API Calls/Steam Data Puller.md",
+    "Files/Main.md",
+    "Task List.md",
+    "Ideas/Image, please!.md",
+    "Files/API Calls/Game Completion.md",
+    "Ideas",
+    "Ideas/Pasted image 20230703223607.png",
+    "Files/API Calls",
+    "Files/Cogs/Backlog",
+    "Files/Cogs",
+    "The Bot.md",
+    "Files - Main.md",
+    "Files"
+  ]
+}
